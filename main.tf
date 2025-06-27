@@ -1,16 +1,35 @@
-resource "podman_image" "nginx_podman" {
-  name     = "docker.io/library/nginx:latest"
-  provider = podman.pod
+# 🔁 Use Podman via Docker provider alias
+resource "docker_image" "nginx_pod" {
+  name     = "nginx:latest"
+  provider = docker.pod
 }
 
-resource "podman_container" "nginx_podman" {
+resource "docker_container" "nginx_pod" {
   name  = "nginx-pod"
-  image = podman_image.nginx_podman.name
+  image = docker_image.nginx_pod.image_id
 
   ports {
-    container_port = 80
-    host_port      = 8082
+    internal = 80
+    external = 8082
   }
 
-  provider = podman.pod
+  provider = docker.pod
+}
+
+# 🐳 Optional: Docker Desktop variant for comparison
+resource "docker_image" "nginx_docker" {
+  name     = "nginx:latest"
+  provider = docker.docker
+}
+
+resource "docker_container" "nginx_docker" {
+  name  = "nginx-docker"
+  image = docker_image.nginx_docker.image_id
+
+  ports {
+    internal = 80
+    external = 8081
+  }
+
+  provider = docker.docker
 }
