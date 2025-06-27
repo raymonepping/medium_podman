@@ -1,0 +1,34 @@
+services:
+
+  ssh-clean:
+    build:
+      context: ./ssh-clean
+    container_name: ssh-clean
+    ports:
+      - "2222:22"
+    restart: unless-stopped
+    networks:
+      - transform
+    cap_add:
+      - IPC_LOCK
+    tty: true
+    stdin_open: true
+    privileged: true
+
+  mysql:
+    image: mysql:8.4
+    container_name: mysql
+    env_file:
+      - ./mysql/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    
+networks:
+  transform:
+
+volumes:
+  mysql_data:  
