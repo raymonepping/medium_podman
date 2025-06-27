@@ -1,10 +1,11 @@
-variable "region" {
-  description = "Region to deploy resources"
+variable "environment" {
+  description = "Deployment environment"
   type        = string
-  default     = "eu-north-1"
+  default     = ""
 }
 
 variable "project_name" {
-  description = "Project name for tagging and identification"
+  description = "Name of the project"
   type        = string
+  default     = ""
 }

@@ -1,20 +1,5 @@
 services:
 
-  ssh-clean:
-    build:
-      context: ./ssh-clean
-    container_name: ssh-clean
-    ports:
-      - "2222:22"
-    restart: unless-stopped
-    networks:
-      - transform
-    cap_add:
-      - IPC_LOCK
-    tty: true
-    stdin_open: true
-    privileged: true
-
   mysql:
     image: mysql:8.4
     container_name: mysql
