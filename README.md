@@ -1,9 +1,34 @@
 # medium_podman
 
-Automation scripts and utilities for shell-based workflows.
+Terraform project to provision DOCKER infrastructure.
 
-> This project was scaffolded automatically using `generate_project.sh`.
+## Requirements
 
-## License
+- Terraform >= 1.3
+- GitHub CLI (gh)
+- terraform-docs (optional)
 
-[GPLv3](LICENSE)
+## Usage
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+## Structure
+
+```
+.
+├── main.tf
+├── provider.tf
+├── variables.tf
+├── outputs.tf
+├── backend.tf
+├── versions.tf
+├── data.tf
+├── locals.tf
+└── modules/
+    ├── compute/
+    └── network/
+```
